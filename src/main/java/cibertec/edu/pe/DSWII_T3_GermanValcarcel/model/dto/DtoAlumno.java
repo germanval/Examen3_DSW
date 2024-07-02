@@ -1,13 +1,12 @@
 package cibertec.edu.pe.DSWII_T3_GermanValcarcel.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-@AllArgsConstructor
-@Getter
-@Setter
-public class DtoAlumno {
+import lombok.Data;
+
+
+@Data
+public class DtoAlumno implements DtoEntity{
+
     private String apealumno;
     private String nomalumno;
     private String nomcurso;

@@ -1,5 +1,6 @@
 package cibertec.edu.pe.DSWII_T3_GermanValcarcel.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,13 +22,13 @@ public class Alumno {
     private Integer idalumno;
     private String apealumno;
     private String nomalumno;
-    private String idespecialidad;
     private String proce;
-    @ManyToMany(
-            cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER)
-    @JoinTable(name = "notas",
-            joinColumns = @JoinColumn(name = "idAlumno"),
-            inverseJoinColumns = @JoinColumn(name = "idCurso"))
-    private Set<Curso> cursos = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "idesp")
+    private Especialidad especialidad;
+    @OneToMany(mappedBy = "alumno",
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+        private Set<Notas> curso = new HashSet<>();
+
 }
